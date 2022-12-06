@@ -77,4 +77,6 @@ let () =
   List.fold_left perform stacks' instructions'
   |> Array.map List.hd
   |> (Array.to_seq >> String.of_seq)
-  |> print_string; print_newline
+  |> print_string; print_newline ()
+
+(*FSZWBPTBG*)
