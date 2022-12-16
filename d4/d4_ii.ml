@@ -27,12 +27,10 @@ let parse_input =
   let parse_range = String.split_on_char '-' >> List.map int_of_string >> list_to_pair in 
   String.split_on_char ',' >> List.map parse_range >> list_to_pair
 
-let is_fully_in = function (range1, range2) ->
-  let is_overlap = function ((min1, max1), (min2, max2)) ->
-    let max_overlap = (max1 >= min2 && max1 <= max2) in
-    let min_overlap = (min1 <= max2 && min1 >= min2) in
-    max_overlap || min_overlap in
-  if is_overlap (range1, range2) || is_overlap (range2, range1) then 1 else 0
+let is_fully_in range1 range2 =
+  let is_in_range n (min, max) = n >= min && n <= max in
+  let is_overlap (min, max) range =  is_in_range min range || max range in
+  if is_overlap range1 range2 || is_overlap range2 range1 then 1 else 0
 
 let () =
   read_file filename (parse_input >> is_fully_in)

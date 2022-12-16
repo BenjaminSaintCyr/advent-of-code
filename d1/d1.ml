@@ -2,8 +2,6 @@ let filename = "input"
 
 let (||>) (a, b) f = f a b
 
-let (|>!) x sideEffect = sideEffect x; x
-
 let solve filename = 
   let lines = ref (0, 0) in
   let chan = open_in filename in
