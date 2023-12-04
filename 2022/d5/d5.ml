@@ -1,12 +1,13 @@
+(* utils *)
 let pipe f g x = g (f x)
 let ( >> ) = pipe
 
+(* types *)
 type crate = char
 type stack = crate list
 type dock = stack array
 
 type instruction = int * int * int
-
 
 let read_file filename =
   let lines = ref [] in
